@@ -432,10 +432,10 @@ html, body{
     width: 40px;
 }
 .lmafblb{
-    font-size: 8px;
+    font-size: 6px;
     color: white;
     font-family: var(--Inter);
-    line-height: 1.7;
+    line-height: 2;
 }
 .lmafblc a{
     display: flex;
