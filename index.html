@@ -47,7 +47,7 @@
         </script>
     <!-- navfix -->
 
-    <div class="con">
+    <div class="con" id="home">
         <div class="container">
             <div class="landing">
                 <!-- lnavbar -->
@@ -56,7 +56,6 @@
                         <img src="images/quotelogo 1.png" alt="">
                     </div>
                     <div class="lnavbarlink">
-                        <a href=""><i class="fa-brands fa-github"></i></a>
                         <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -73,8 +72,8 @@
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora velit esse porro delectus vel asperiores nostrum veritatis expedita a quod!</p>
                     </div>
                     <div class="lobutton">
-                        <a href="" class="langsung"><i class="fa-solid fa-arrow-down"></i>Langsung Ke Generator</a>
-                        <a href="" class="baca">Baca Manual</a>
+                        <a href="#boxgenerator" class="langsung"><i class="fa-solid fa-arrow-down"></i>Langsung Ke Generator</a>
+                        <a href="#boxmanual" class="baca">Baca Manual</a>
                     </div>
                     <div class="lobackround">
                         <img src="images/Group 15.png" alt="">
@@ -86,7 +85,7 @@
                     <img src="images/3d-mini-folder (3) 1.png" alt="" class="mainan2">
                 </div>
 
-                <div class="lmaone">
+                <div class="lmaone" id="boxmanual">
                     <img src="images/save1.png" alt="" class="sejarah1">
                     <img src="images/Ellipse 25.png" alt="" class="lightlma1">
                     <div class="lmaoneleft">
@@ -173,7 +172,7 @@
                     </div>
                 </div>
 
-                <div class="lgen">
+                <div class="lgen" id="boxgenerator">
                     <img src="images/Ellipse 21.png" alt="" id="lgenlight">
                     <div class="lgenspan">
                         <span class="subheader">theGenerator</span>
@@ -186,10 +185,20 @@
                     </div>
 
                     <div class="lgenbox">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus reprehenderit a nulla minus perferendis neque mollitia aut iusto hic illum?</p>
-                        <button onclick="quote()">abrakadabra!</button>
+                        <p id='motivasi'>Generate quote dengan menekan tombol abrakadabra!</p>
+                        <button onclick="getQuote()">abrakadabra!</button>
                     </div>
                 </div>
+
+                <script>
+                    const divWithQuote = document.getElementById("motivasi");
+
+                    const getQuote = () => {
+                    fetch("https://api.kanye.rest")
+                        .then((response) => response.json())
+                        .then((data) => (divWithQuote.innerHTML = data.quote));
+                    };
+                </script>
 
                 <div class="fo">
                     <div class="foline"></div>
@@ -201,16 +210,16 @@
                         <div class="forowright">
                             <div class="forowrightlink">
                                 <p>Navigasi</p>
-                                <a href="">Home</a>
-                                <a href="">Manual</a>
-                                <a href="">Generator</a>
+                                <a href="#home">Home</a>
+                                <a href="#boxmanual">Manual</a>
+                                <a href="#boxgenerator">Generator</a>
                             </div>
                             <div class="forowrightlink">
                                 <p>HonorableMention</p>
-                                <a href="">Geeksforgeeks</a>
-                                <a href="">Github</a>
-                                <a href="">Stackoverflow</a>
-                                <a href="">Imdb</a>
+                                <a href="https://www.geeksforgeeks.org/" target="_blank">Geeksforgeeks</a>
+                                <a href="https://github.com/" target="_blank">Github</a>
+                                <a href="https://stackoverflow.com/" target="_blank">Stackoverflow</a>
+                                <a href="https://www.imdb.com/" target="_blank">Imdb</a>
                             </div>
                         </div>
                     </div>
@@ -218,5 +227,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Fungsi untuk scroll ke elemen dengan offset tertentu
+        function scrollToElementWithOffset(id, offset) {
+            const element = document.getElementById(id);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - offset, // Sesuaikan offset dengan tinggi navbar
+                    behavior: 'smooth' // Gulir dengan halus
+                });
+            }
+        }
+
+        // Event listener untuk link ke #tentang
+        document.querySelector('a[href="#tentang"]').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah scroll default
+            scrollToElementWithOffset('tentang', 80); // Sesuaikan dengan tinggi navbar
+        });
+
+    </script>
+
 </body>
 </html>
